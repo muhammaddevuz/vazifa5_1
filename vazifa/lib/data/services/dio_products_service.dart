@@ -39,6 +39,30 @@ class DioProductsService {
       print("");
     }
   }
+  Future<void> addProduct(Map product) async {
+    try {
+      await _dioClient.addProduct("https://api.escuelajs.co/api/v1/products/",product);
+      
+    } on DioException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    } catch (e) {
+      // ignore: avoid_print
+      print("");
+    }
+  }
+  Future<void> editProduct(String id, Map product) async {
+    try {
+      await _dioClient.editProduct("https://api.escuelajs.co/api/v1/products/$id",product);
+      
+    } on DioException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    } catch (e) {
+      // ignore: avoid_print
+      print("");
+    }
+  }
 
   
 }

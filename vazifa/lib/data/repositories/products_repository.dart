@@ -14,4 +14,10 @@ class ProductsRepository {
   Future<void> deleteProducts(String id) async {
     return await _dioProductsService.deleteProduct(id);
   }
+  Future<void> addProducts(Map product) async {
+    return await _dioProductsService.addProduct(product);
+  }
+  Future<void> editProducts(String id, Map product) async {
+    return await _dioProductsService.editProduct(id, product);
+  }
 }

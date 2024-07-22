@@ -62,6 +62,14 @@ class DioClient {
   delete(String url) async {
     await _dio.delete(url);
   }
+
+  addProduct(String url, Map product) async {
+    await _dio.post(url, data: product);
+  }
+
+  editProduct(String url, Map product) async {
+    await _dio.put(url, data: product);
+  }
 }
 
 class LogginInterceptor extends Interceptor {

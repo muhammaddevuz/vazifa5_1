@@ -28,3 +28,24 @@ class ErrorDeletingProductState extends ProductsState {
 
   ErrorDeletingProductState(this.message);
 }
+
+class AddingProductState extends ProductsState {}
+
+class AddedProductState extends ProductsState {
+}
+
+class ErrorAddingProductState extends ProductsState {
+  final String message;
+
+  ErrorAddingProductState(this.message);
+}
+class EditingProductState extends ProductsState {}
+
+class EditedProductState extends ProductsState {
+}
+
+class ErrorEditingProductState extends ProductsState {
+  final String message;
+
+  ErrorEditingProductState(this.message);
+}

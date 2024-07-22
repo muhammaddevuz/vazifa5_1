@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lesson81/blocs/products/products_bloc.dart';
 import 'package:lesson81/data/models/product.dart';
+import 'package:lesson81/ui/widgets/add_product.dart';
+import 'package:lesson81/ui/widgets/edit_product.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
@@ -29,7 +31,11 @@ class _UsersScreenState extends State<UsersScreen> {
         title: const Text("Products"),
         actions: [
           IconButton(
-            onPressed: () async {},
+            onPressed: () async {
+              await showDialog(
+                  context: context, builder: (context) => AddProduct());
+              getUser();
+            },
             icon: const Icon(Icons.add),
           ),
         ],
@@ -64,6 +70,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     final user = users[index];
                     return ListTile(
                       leading: Container(
+                          width: 100,
                           decoration: BoxDecoration(shape: BoxShape.circle),
                           clipBehavior: Clip.hardEdge,
                           child: Image.network(
@@ -77,10 +84,24 @@ class _UsersScreenState extends State<UsersScreen> {
                             },
                           )),
                       title: Text("${user.title} $index"),
-                      subtitle: Text(user.images[0].split('"')[1]),
+                      subtitle: Text("\$${user.price}"),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          IconButton(
+                              onPressed: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      EditProduct(product: user),
+                                );
+                                // getUser();
+                              },
+                              icon: Icon(
+                                Icons.edit,
+                                color: Colors.blue,
+                                size: 20,
+                              )),
                           IconButton(
                               onPressed: () {
                                 context
@@ -92,7 +113,7 @@ class _UsersScreenState extends State<UsersScreen> {
                                 Icons.delete,
                                 color: Colors.red,
                                 size: 20,
-                              ))
+                              )),
                         ],
                       ),
                     );
